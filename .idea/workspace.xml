@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="02d7c954-6c86-4a88-b029-54fe056f4fec" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_vintage_engine.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algclass.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlackJack/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlackJack/AccountManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlackJack/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Monitors/NightLab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Monitors/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Monitors/TA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Monitors/TABrain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ThreadSummary/SynchronizedThreads2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ThreadSummary/ThreadSummaryHomework.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datastructures/Heap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datastructures/HeapSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datastructures/HuffmanEncodeDecode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datastructures/MaxHeap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datastructures/MinHeap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sum/Sum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/writename/WriteName.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Kp1GPBuzj87ClUmPyiebTipdFy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/wenchydutreuil/Desktop/Github/algclass/src/ThreadSummary",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.deploy.options",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/ThreadSummary" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ConvexHullGUI">
+    <configuration name="ConvexHullGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ConvexHullStarting.ConvexHullGUI" />
+      <module name="algclass" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ConvexHullStarting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FindPath" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MazeStarter.FindPath" />
+      <module name="algclass" />
+      <option name="PROGRAM_PARAMETERS" value="./src/MazeStarter/testfile/notReachable.txt bfs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MazeStarter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HuffmanEncodeDecode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="datastructures.HuffmanEncodeDecode" />
+      <module name="algclass" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="datastructures.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BlackJack.Main" />
+      <module name="algclass" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BlackJack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MazeStarter_2.FindPath" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MazeStarter_2.FindPath" />
+      <module name="algclass" />
+      <option name="PROGRAM_PARAMETERS" value="./src/MazeStarter_2/testfile/input2.txt bfs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MazeStarter_2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.FindPath" />
+      <item itemvalue="Application.ConvexHullGUI" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MazeStarter_2.FindPath" />
+      <item itemvalue="Application.HuffmanEncodeDecode" />
+      <item itemvalue="Java Scratch.Scratch" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ConvexHullGUI" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Java Scratch.Scratch" />
+        <item itemvalue="Application.MazeStarter_2.FindPath" />
+        <item itemvalue="Application.HuffmanEncodeDecode" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="02d7c954-6c86-4a88-b029-54fe056f4fec" name="Changes" comment="" />
+      <created>1674656617618</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674656617618</updated>
+      <workItem from="1674656619073" duration="17987000" />
+      <workItem from="1676829197396" duration="14259000" />
+      <workItem from="1676902228918" duration="8387000" />
+      <workItem from="1677103034592" duration="16067000" />
+      <workItem from="1677459553535" duration="26217000" />
+      <workItem from="1679108866748" duration="2600000" />
+      <workItem from="1679971462611" duration="548000" />
+      <workItem from="1680043116265" duration="24458000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
