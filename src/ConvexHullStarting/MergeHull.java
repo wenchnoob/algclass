@@ -118,7 +118,7 @@ public class MergeHull {
 		// if size is one 
 			//return the single point that was passed in b/c a single point is its own convex hull
 		if (points.size() <= 1) {
-			chp.push(points);
+			chp.addFrame(chp.prevFrame().copy().push(points));
 			return points;
 		}
 
@@ -136,7 +136,8 @@ public class MergeHull {
 		// mem_left(left);
 		List<Point2D> right = recursiveMergeHull(points.subList(m, l));
 		// mem_right(right);
-		chp.reset();
+		// chp.reset();
+		chp.addFrame(chp.prevFrame().copy());
 		next(left, right);
 			
 			/*Next we need to merge the two hull together -- this is where all the work takes place
@@ -160,20 +161,20 @@ public class MergeHull {
 
 			// Find the bottom tangent line first use walkTangent
 		Line2D bottom = walkTangent(lp, rp, left, right);
-		chp.bot(bottom);
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+		chp.prevFrame().setBot(bottom);
+//		try {
+//			Thread.sleep(200);
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		}
 		// Find the upper tangent line next use walkTangent
 		Line2D top = walkTangent(rp, lp, right, left);
-		chp.top(top);
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+		chp.prevFrame().setTop(top);
+//		try {
+//			Thread.sleep(200);
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		}
 			
 
 			// Generate the complete Hull -- watch that zero break!
@@ -221,14 +222,14 @@ public class MergeHull {
 
 			// end of if recursive step
 
-		chp.pop();
-		chp.pop();
-		chp.push(result);
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+
+		//chp.addFrame(
+		chp.prevFrame().pop().pop().push(result); //);
+//		try {
+//			Thread.sleep(200);
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		}
 		return result;
 	}
 
@@ -271,19 +272,22 @@ public class MergeHull {
 	}
 
 	private void next(List<Point2D> left, List<Point2D> right) {
-		chp.nextLeftRight(left, right);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+		chp.prevFrame().setCur_left(left);
+		chp.prevFrame().setCur_right(right);
+//		chp.nextLeftRight(left, right);
+//		try {
+//			Thread.sleep(100);
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		}
 	}
 	private void tempLine(Line2D line) {
-		chp.line(line);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+		chp.addFrame(chp.prevFrame().setLine(line));
+//		chp.line(line);
+//		try {
+//			Thread.sleep(100);
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		}
 	}
 }

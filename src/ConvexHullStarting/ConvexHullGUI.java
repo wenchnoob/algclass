@@ -50,7 +50,9 @@ public class ConvexHullGUI {
 				super.mouseReleased(e);
 				
 				points.add(e.getPoint());
-				chp.setPoints(points);
+				chp.clear();
+				chp.addFrame(new Frame());
+				// chp.setPoints(points);
 			}
 		});
 		
@@ -98,8 +100,11 @@ public class ConvexHullGUI {
 				}
 
 				// Display them on the panel
-				chp.setPoints(points);
-				chp.setHull(new ArrayList<Point2D>()); // Zero out any hull that was there
+				chp.clear();
+				Frame f = new Frame();
+				f.setThePoints(points);
+				chp.addFrame(f);
+				// chp.setHull(new ArrayList<Point2D>()); // Zero out any hull that was there
 			}
 		
 		});
@@ -112,13 +117,15 @@ public class ConvexHullGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chp.clear();
+				chp.reset();
 				Runnable r = () -> {
 					// Generate the hull
 					List<Point2D> hullPoints = theConvexHullFinder.computeHull(points);
 
 					// Show the results on the screen
-					chp.setHull(hullPoints);
+					Frame f = new Frame();
+					f.setTheHull(hullPoints);
+					chp.addFrame(f);
 				};
 				Thread solver = new Thread(r);
 				solver.start();
@@ -128,6 +135,29 @@ public class ConvexHullGUI {
 		
 		
 		mainPanel.add(controlPanel, BorderLayout.WEST);
+
+
+		JPanel animationPanel = new JPanel();
+
+		JButton reset = new JButton("Reset");
+		reset.addActionListener(action -> chp.reset());
+		JButton back = new JButton("Back");
+		back.addActionListener(action -> chp.back());
+		JButton play = new JButton("Play");
+		play.addActionListener(action -> chp.play());
+		JButton next = new JButton("Next");
+		next.addActionListener(action -> chp.next());
+		JButton skip = new JButton("Skip");
+		skip.addActionListener(action -> chp.skip());
+
+		animationPanel.add(reset);
+		animationPanel.add(back);
+		animationPanel.add(play);
+		animationPanel.add(next);
+		animationPanel.add(skip);
+
+
+		mainPanel.add(animationPanel, BorderLayout.SOUTH);
 		
 		
 		
