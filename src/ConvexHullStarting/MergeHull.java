@@ -28,26 +28,23 @@ public class MergeHull {
 
 		// And note that Point2D doesn't implement Comparable so we have to provide an
 		// external Comparator
-		Collections.sort(points, new Comparator<Point2D>() {
+		Collections.sort(points, (p0, p1) -> {
 
-			@Override
-			public int compare(Point2D p0, Point2D p1) {
-				
-				// We care about sorting in the x-coord so this is our first tie-breaker
-				int result = (int)(p0.getX() - p1.getX());
-				if (result == 0) {
-					// Use the y-coord as the 2nd (and last tie-breaker)
-					result = (int)(p0.getY() - p1.getY());
-				}
-				
-				return result;
+			// We care about sorting in the x-coord so this is our first tie-breaker
+			int result = (int)(p0.getX() - p1.getX());
+			if (result == 0) {
+				// Use the y-coord as the 2nd (and last tie-breaker)
+				result = (int)(p0.getY() - p1.getY());
 			}
+
+			return result;
 		});
 		
-			
-		// The result is a List of Point2Ds that contain the hull sections in
-		// ccw order
+		chp.clear();
+		chp.addFrame(chp.prevFrame().copy().setThePoints(points));
+		chp.next();
 		List<Point2D> result = recursiveMergeHull(points);
+		chp.addFrame(chp.prevFrame().copy().setTheHull(result));
 		for(int i = 0; i <result.size(); i ++){
 			System.out.print( result.get(i) + "  ");
 		}
@@ -137,7 +134,7 @@ public class MergeHull {
 		List<Point2D> right = recursiveMergeHull(points.subList(m, l));
 		// mem_right(right);
 		// chp.reset();
-		chp.addFrame(chp.prevFrame().copy());
+		// chp.addFrame(chp.prevFrame().copy());
 		next(left, right);
 			
 			/*Next we need to merge the two hull together -- this is where all the work takes place
@@ -161,20 +158,11 @@ public class MergeHull {
 
 			// Find the bottom tangent line first use walkTangent
 		Line2D bottom = walkTangent(lp, rp, left, right);
-		chp.prevFrame().setBot(bottom);
-//		try {
-//			Thread.sleep(200);
-//		} catch (InterruptedException e) {
-//			throw new RuntimeException(e);
-//		}
+		chp.addFrame(chp.prevFrame().copy().setLine(null).setBot(bottom));
+
 		// Find the upper tangent line next use walkTangent
 		Line2D top = walkTangent(rp, lp, right, left);
-		chp.prevFrame().setTop(top);
-//		try {
-//			Thread.sleep(200);
-//		} catch (InterruptedException e) {
-//			throw new RuntimeException(e);
-//		}
+		chp.addFrame(chp.prevFrame().copy().setLine(null).setTop(top));
 			
 
 			// Generate the complete Hull -- watch that zero break!
@@ -223,13 +211,7 @@ public class MergeHull {
 			// end of if recursive step
 
 
-		//chp.addFrame(
-		chp.prevFrame().pop().pop().push(result); //);
-//		try {
-//			Thread.sleep(200);
-//		} catch (InterruptedException e) {
-//			throw new RuntimeException(e);
-//		}
+		chp.addFrame(chp.prevFrame().copy().setTop(null).setBot(null).pop().pop().push(result));
 		return result;
 	}
 
@@ -272,22 +254,10 @@ public class MergeHull {
 	}
 
 	private void next(List<Point2D> left, List<Point2D> right) {
-		chp.prevFrame().setCur_left(left);
-		chp.prevFrame().setCur_right(right);
-//		chp.nextLeftRight(left, right);
-//		try {
-//			Thread.sleep(100);
-//		} catch (InterruptedException e) {
-//			throw new RuntimeException(e);
-//		}
+		chp.addFrame(chp.prevFrame().copy().setCur_left(left));
+		chp.addFrame(chp.prevFrame().copy().setCur_right(right));
 	}
 	private void tempLine(Line2D line) {
-		chp.addFrame(chp.prevFrame().setLine(line));
-//		chp.line(line);
-//		try {
-//			Thread.sleep(100);
-//		} catch (InterruptedException e) {
-//			throw new RuntimeException(e);
-//		}
+		chp.addFrame(chp.prevFrame().copy().setLine(line));
 	}
 }

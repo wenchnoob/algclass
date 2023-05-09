@@ -5,38 +5,38 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Frame {
-    private List<Point2D> thePoints;
-    private List<Point2D> theHull;
-    private Line2D line;
-    private Line2D top, bot;
-    private LinkedList<List<Point2D>> prevs;
-    private List<Point2D> cur_left, cur_right;
+    public List<Point2D> thePoints;
+    public List<Point2D> theHull;
+    public Line2D line;
+    public Line2D top, bot;
+    public LinkedList<List<Point2D>> prevs;
+    public List<Point2D> cur_left, cur_right;
 
     public Frame() {
         this.thePoints = new ArrayList<>();
-        this.theHull = new ArrayList<>();
+        this.theHull = new LinkedList<>();
         this.prevs = new LinkedList<>();
-        this.cur_left = new ArrayList<>();
-        this.cur_right = new ArrayList<>();
+        this.cur_left = new LinkedList<>();
+        this.cur_right = new LinkedList<>();
     }
 
     public Frame(List<Point2D> points, List<Point2D> theHull, LinkedList<List<Point2D>> prevs, List<Point2D> cur_left, List<Point2D> cur_right, Line2D line,
                  Line2D top, Line2D bot) {
         this.thePoints = points;
         this.theHull = theHull;
-        LinkedList<List<Point2D>> tmp = new LinkedList<>();
-        tmp.addAll(prevs);
-        this.prevs = tmp;
-        this.cur_left = cur_left;
-        this.cur_right = cur_right;
+        this.prevs = new LinkedList<>(prevs);
+        this.cur_left = new LinkedList<>(cur_left);
+        this.cur_right = new LinkedList<>(cur_right);
         this.line = line;
         this.top = top;
         this.bot = bot;
     }
 
     public Frame copy() {
+
         return new Frame(thePoints, theHull, prevs, cur_left, cur_right, line, top, bot);
     }
 
@@ -100,7 +100,7 @@ public class Frame {
     }
 
     public Frame pop() {
-        this.prevs.pop();
+        if (!this.prevs.isEmpty()) this.prevs.pop();
         return this;
     }
 
@@ -120,5 +120,31 @@ public class Frame {
     public Frame setCur_right(List<Point2D> cur_right) {
         this.cur_right = cur_right;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Frame) {
+            return this.thePoints.equals(((Frame) other).thePoints)
+                    && this.theHull.equals(((Frame) other).theHull)
+                    && this.prevs.equals(((Frame) other).prevs)
+                    && this.cur_left.equals(((Frame) other).cur_left)
+                    && this.cur_right.equals(((Frame) other).cur_right)
+                    && (Objects.nonNull(this.line) ? this.line.equals(((Frame) other).line) : Objects.isNull(((Frame) other).line))
+                    && (Objects.nonNull(this.top) ? this.top.equals(((Frame) other).top) : Objects.isNull(((Frame) other).top))
+                    && (Objects.nonNull(this.bot) ? this.bot.equals(((Frame) other).bot) : Objects.isNull(((Frame) other).bot));
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.thePoints, this.theHull, this.prevs, this.cur_left, this.cur_right, this.line, this.top, this.bot);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("The points: %s%nThe hull: %s%nThe line: %s%nThe top: %s%nThe bot:%s%nThe prevs: %s%nCur Left: %s%nCur Right: %s%n%n",
+                this.thePoints, this.theHull, this.line, this.top, this.bot, this.prevs, this.cur_left, this.cur_right);
     }
 }

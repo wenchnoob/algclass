@@ -20,14 +20,17 @@ public class ConvexHullPanel extends javax.swing.JPanel {
 
 	public ConvexHullPanel() {
 		frames = new LinkedList<>();
+		frames.add(new Frame());
 	}
 
+	int i = 0;
 	public void paintComponent(Graphics g) {
 		if (cur_frame >= frames.size() || cur_frame < 0) return;
 
 		super.paintComponent(g); // To draw the background color, if set
 
 		Frame frame = frames.get(cur_frame);
+		// System.out.println(frame);
 
 		// Draw the list of points in blue
 		g.setColor(Color.blue);
@@ -37,27 +40,31 @@ public class ConvexHullPanel extends javax.swing.JPanel {
 		}
 
 		// Draw the convex hull in red
-		renderHull(g, Color.RED, frame.getTheHull());
+		if (Objects.nonNull(frame.getTheHull()) && frame.getTheHull().size() > 0) {
+			renderHull(g, Color.RED, frame.getTheHull());
+		} else {
 
-		for (List<Point2D> points: frame.getPrevs()) renderHull(g, Color.BLUE, points);
+			for (List<Point2D> points : frame.getPrevs()) renderHull(g, Color.BLUE, points);
 
-		renderHull(g, Color.GREEN, frame.getCur_left());
-		renderHull(g, Color.GREEN, frame.getCur_right());
+			renderHull(g, Color.BLUE, frame.getCur_left());
+			renderHull(g, Color.BLUE, frame.getCur_right());
+
+			if (Objects.nonNull(frame.getLine())) {
+				g.setColor(Color.YELLOW);
+				g.drawLine((int) frame.getLine().getX1(), (int) frame.getLine().getY1(), (int) frame.getLine().getX2(), (int) frame.getLine().getY2());
+			}
+
+			if (Objects.nonNull(frame.getTop())) {
+				g.setColor(Color.GREEN);
+				g.drawLine((int) frame.getTop().getX1(), (int) frame.getTop().getY1(), (int) frame.getTop().getX2(), (int) frame.getTop().getY2());
+			}
+
+			if (Objects.nonNull(frame.getBot())) {
+				g.setColor(Color.GREEN);
+				g.drawLine((int) frame.getBot().getX1(), (int) frame.getBot().getY1(), (int) frame.getBot().getX2(), (int) frame.getBot().getY2());
+			}
 
 
-		if (Objects.nonNull(frame.getTop())) {
-			g.setColor(Color.GREEN);
-			g.drawLine((int)frame.getTop().getX1(), (int)frame.getTop().getY1(), (int)frame.getTop().getX2(), (int)frame.getTop().getY2());
-		}
-
-		if (Objects.nonNull(frame.getBot())) {
-			g.setColor(Color.GREEN);
-			g.drawLine((int)frame.getBot().getX1(), (int)frame.getBot().getY1(), (int)frame.getBot().getX2(), (int)frame.getBot().getY2());
-		}
-
-		if (Objects.nonNull(frame.getLine())) {
-			g.setColor(Color.YELLOW);
-			g.drawLine((int)frame.getLine().getX1(), (int)frame.getLine().getY1(), (int)frame.getLine().getX2(), (int)frame.getLine().getY2());
 		}
 	}
 
@@ -73,13 +80,35 @@ public class ConvexHullPanel extends javax.swing.JPanel {
 		}
 	}
 
+	public List<Frame> frames() {
+		return this.frames;
+	}
+
 	public void addFrame(Frame frame) {
+
+		if (prevFrame().equals(frame)) {
+//			Frame other = frame;
+//			System.out.println(prevFrame().equals(frame));
+//			System.out.println(prevFrame().thePoints.equals(((Frame) other).thePoints));
+//			System.out.println(prevFrame().theHull.equals(((Frame) other).theHull));
+//			System.out.println(prevFrame().prevs.equals(((Frame) other).prevs));
+//			System.out.println(prevFrame().cur_left.equals(((Frame) other).cur_left));
+//			System.out.println(prevFrame().cur_right.equals(((Frame) other).cur_right));
+//			System.out.println(Objects.nonNull(prevFrame().line) ? prevFrame().line.equals(((Frame) other).line) : Objects.isNull(((Frame) other).line));
+//			System.out.println(Objects.nonNull(prevFrame().top) ? prevFrame().top.equals(((Frame) other).top) : Objects.isNull(((Frame) other).top));
+//			System.out.println(Objects.nonNull(this.prevFrame().bot) ? this.prevFrame().equals(((Frame) other).bot) : Objects.isNull(((Frame) other).bot));
+//			System.out.println(this.hashCode() + " " + frame.hashCode());
+//			System.out.println(String.format("Prev: %s %n", this.frames.get(this.frames.size() - 1)) + "Ignored " + frame);
+			return;
+		}
 		this.frames.add(frame);
 	}
 
 	public void clear() {
-		this.cur_frame = -1;
+		this.cur_frame = 0;
 		this.frames = new ArrayList<>();
+		this.frames.add(new Frame());
+		this.repaint();
 	}
 
 	public Frame prevFrame() {
@@ -89,28 +118,25 @@ public class ConvexHullPanel extends javax.swing.JPanel {
 
 	public void reset() {
 		this.cur_frame = 0;
+		// next();
 		this.repaint();
 	}
 
 	public void back() {
 		this.cur_frame -= 1;
-		if (this.cur_frame < -1) this.cur_frame = -1;
+		if (this.cur_frame < 0) this.cur_frame = 0;
 		this.repaint();
 	}
-	public void play() {
-		while(this.cur_frame < frames.size()) {
-			this.next();
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
-		}
-	}
-	public void next() {
+
+	public boolean next() {
+		boolean res = true;
 		this.cur_frame += 1;
-		if (this.cur_frame > frames.size()) this.cur_frame = frames.size();
+		if (this.cur_frame >= frames.size()) {
+			this.cur_frame = frames.size() - 1;
+			res = false;
+		}
 		this.repaint();
+		return res;
 	}
 
 	public void skip() {
